@@ -1,6 +1,7 @@
 package Ejercicio;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 public class E1 {
@@ -18,7 +19,10 @@ public class E1 {
 				.map(x -> x.price
 						.multiply(new BigDecimal(x.tax.percent).divide(new BigDecimal(100))).add(x.price))
 				.reduce(BigDecimal.ZERO, BigDecimal::add);
-		System.out.println(precioTotal);
+		
+		System.out.println(precioTotal.setScale(0,RoundingMode.HALF_DOWN));
+		
+	shopping.stream().filter(x->x.name.startsWith("C")).forEachOrdered(x->System.out.print(x.name+", "));	
 		// shopping.stream().map(x->(x.tax * x.price));
 	}
 }
