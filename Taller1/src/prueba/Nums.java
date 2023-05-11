@@ -8,7 +8,7 @@ public class Nums {
 	public static void main(String[] args) {
 		List<Integer>numbers =List.of(18,6,4,15,55,78,12,9,8);
 		
-		List<Integer>list=numbers.stream().filter(x->x>10).collect(Collectors.toList());
+		int list=(int) numbers.stream().filter(x->x>10).count();
 		System.out.println(list);
 	}
 
