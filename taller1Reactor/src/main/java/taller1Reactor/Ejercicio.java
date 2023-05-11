@@ -6,16 +6,17 @@ import reactor.core.publisher.Flux;
 
 public class Ejercicio {
 	public static void main(String[] args) {
-		Flux<String> publisher1 = Flux.just("Mensaje 1", "Mensaje 2");
+		Flux<String> publisher = Flux.just("Mensaje 1", "Mensaje 2", "Mensaje 3");
 
-		Consumer<String> consumer1 = System.out::println;
+		publisher.subscribe(m -> System.out.println("Consumer 1. Received: " + m),
 
-		Consumer<String> consumer2 = System.out::println;
+				e -> System.out.println("Consumer 1. Error: " + e),
 
-		System.out.println("consumer1");
-		publisher1.subscribe(consumer1);
+				() -> System.out.println("Consumer 1. Completed: "));
 
-		System.out.println("consumer2");
-		publisher1.subscribe(consumer2);
+		publisher.subscribe(m -> System.out.println("Consumer 2. Received: " + m),
+
+				e -> System.out.println("Consumer 2. Error: " + e),
+				() -> System.out.println("Consumer 2. Completed: "));
 	}
 }
