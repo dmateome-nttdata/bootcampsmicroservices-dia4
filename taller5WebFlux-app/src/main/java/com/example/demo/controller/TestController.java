@@ -24,21 +24,11 @@ public class TestController {
 	PersonService personService;
 
 	@GetMapping("/personAll")
-	public ModelAndView personList2() {
-		ModelAndView mav=new ModelAndView(VISTA);
-		Flux<Person> lista=personService.getAllPerson();
+	public String personList2(final Model model) {
+		final Flux<Person> personlist = personService.getAllPerson();
 		
-		Mono<List<Person>> personListMono = lista.collectList();
-		List<Person> listaBuena =new ArrayList<>();
-        personListMono.subscribe(personList -> {
-            System.out.println("List of persons:");
-            for (Person person : personList) {
-                listaBuena.add(person);
-            }
-        });
-        
-		mav.addObject("personlist",listaBuena);
-		return mav;
-
+		model.addAttribute("personlist", personlist);
+		
+		return "personList";
 	}
 }

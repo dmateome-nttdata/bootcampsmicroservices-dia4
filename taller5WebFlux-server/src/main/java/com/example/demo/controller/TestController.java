@@ -11,31 +11,39 @@ import reactor.core.publisher.Flux;
 
 @RestController
 public class TestController {
-
 	@GetMapping("/person-list-1")
-	public Flux<Person> personList1() {
-		Person p = new Person("Jack", "Williams", 47);
-		return Flux.just(p).delayElements(Duration.ofSeconds(2));
+	public Flux<Person> personList1(){
+		
+		return Flux.just(
+				new Person("John", "Doe",18)
+			).delayElements(Duration.ofSeconds(1));
+		
 	}
-
+	
 	@GetMapping("/person-list-2")
-	public Flux<Person> personList2() {
-		Person p = new Person("person1", "sdad", 5);
-		return Flux.just(p).delayElements(Duration.ofSeconds(2));
-
+	public Flux<Person> personList2(){
+		
+		return Flux.just(
+				new Person("Alice", "Johnson",53)
+			).delayElements(Duration.ofSeconds(2));
+		
 	}
-
+	
 	@GetMapping("/person-list-3")
-	public Flux<Person> personList3() {
-		Person p = new Person("person2", "asdad", 5);
-		return Flux.just(p).delayElements(Duration.ofSeconds(2));
-
+	public Flux<Person> personList3(){
+		
+		return Flux.just(
+				new Person("Emily", "Brown",7)
+			).delayElements(Duration.ofSeconds(3));
+		
 	}
-
+	
 	@GetMapping("/person-list-4")
-	public Flux<Person> personList4() {
-		Person p = new Person("person3", "sda", 5);
-		return Flux.just(p).delayElements(Duration.ofSeconds(2));
-
+	public Flux<Person> personList4(){
+		
+		return Flux.just(
+				new Person("Sophie", "Jones",87)
+			).delayElements(Duration.ofSeconds(4));
+		
 	}
 }
